@@ -1,8 +1,13 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  fastapi-app:
-    build: .
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: bigDataApi
+    restart: unless-stopped
     ports:
-      - "8000:8000"
-    restart: always
+      - "443:443"  # HTTPS
+    environment:
+      - PORT=443
